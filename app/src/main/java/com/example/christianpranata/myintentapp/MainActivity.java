@@ -14,6 +14,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Button btnMoveWithObject = findViewById(R.id.btn_move_activity_object);
+        btnMoveWithObject.setOnClickListener(this);
+
         Button btnMoveActivity = findViewById(R.id.btn_move_activity);
         btnMoveActivity.setOnClickListener(this);
 
@@ -41,6 +44,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 String phoneNumber = "082217799447";
                 Intent dialPhoneIntent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:"+phoneNumber));
                 startActivity(dialPhoneIntent);
+                break;
+            case R.id.btn_move_activity_object:
+                Person person = new Person();
+                person.setName("Dicoding Academy");
+                person.setAge(10);
+                person.setCity("Bandung");
+                person.setEmail("academy@dicoding.com");
+
+                Intent moveWithObjectIntent = new Intent(MainActivity.this, MoveWithObjectActivity.class);
+                moveWithObjectIntent.putExtra(MoveWithObjectActivity.EXTRA_PERSON, person);
+                startActivity(moveWithObjectIntent);
                 break;
         }
     }
